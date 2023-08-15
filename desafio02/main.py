@@ -4,7 +4,6 @@ import flet as ft
 import os
 import requests
 import json
-from keys import API_KEY
 
 
 #Request funciton 1: create a header to request
