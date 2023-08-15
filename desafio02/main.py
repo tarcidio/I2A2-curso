@@ -4,11 +4,11 @@ import flet as ft
 import os
 import requests
 import json
+from keys import API_KEY
 
 
 #Request funciton 1: create a header to request
 def create_header():
-  API_KEY = os.environ["API_KEY"]
   return {
       "Authorization": f"Bearer {API_KEY}",
       "Content-Type": "application/json"
