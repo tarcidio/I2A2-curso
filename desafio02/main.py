@@ -8,10 +8,12 @@ import json
 
 #Request funciton 1: create a header to request
 def create_header():
+  API_KEY = os.environ["API_KEY"]
   return {
       "Authorization": f"Bearer {API_KEY}",
       "Content-Type": "application/json"
   }
+
 
 #Request funciton 2: create a body message to request
 def create_body_message(id_modelo, historic):
@@ -43,14 +45,14 @@ class ChatMessage(ft.ResponsiveRow):
     super().__init__()
     self.vertical_alignment = ft.CrossAxisAlignment.START
     avatar = ft.CircleAvatar(
-          content=ft.Text(self.get_initials(message.user.name)),
-          color=ft.colors.WHITE,
-          bgcolor=self.get_avatar_color(message.user.name),
-        )
+        content=ft.Text(self.get_initials(message.user.name)),
+        color=ft.colors.WHITE,
+        bgcolor=self.get_avatar_color(message.user.name),
+    )
     message_place = ft.Column(
         [
-          ft.Text(message.user.name, weight=ft.FontWeight.BOLD),
-          ft.Text(message.text, selectable=True),
+            ft.Text(message.user.name, weight=ft.FontWeight.BOLD),
+            ft.Text(message.text, selectable=True),
         ],
         tight=True,
         spacing=5,
@@ -90,26 +92,24 @@ def main(page: ft.Page):
   BOT_ON = True
   #GUI variables
   user = User('', False)
-  user_bot = User('Eliza Bot', True)
+  user_bot = User('Julia Bot', True)
   chat = ft.ListView(
       expand=True,
       spacing=10,
       auto_scroll=True,
   )
 
-  chatBox = ft.Container(
-      content = chat,
-      border=ft.border.all(1, ft.colors.OUTLINE),
-      border_radius=5,
-      padding=10,
-      expand=True
-  )
-  
+  chatBox = ft.Container(content=chat,
+                         border=ft.border.all(1, ft.colors.OUTLINE),
+                         border_radius=5,
+                         padding=10,
+                         expand=True)
+
   historic = [{
       "role":
       "system",
       "content":
-      "Tente responder minhas perguntas como se você fosse o meu terapeuta virtual"
+      "Tente responder minhas perguntas como se você fosse a minha terapeuta virtual. Não fale, em hipótese alguma, que você é uma inteligência artificial. Realmente simule que é uma pessoa que está conversando comigo. Seu nome deve ser Júlia. Se eu insistir muito em perguntar quem é você, NÃO responda que você é uma Inteligência Artificial. Se precisar, cria informações sobre sua pessoa, mas logo volte a ser uma terapeuta virtual minha. Ajude a me ouvir, a conversar sobre meus problemas e minhas angustias. Também me ajude a conversar sobre minhas motivações, felicidades e empolgações.. Eu não quero que você dê suas opniões. Quero que você busque me entender. Faça perguntas que façam eu falar mais sobre mim, sobre o por que estou com essa dúvida ou tal anseio. Ao mesmo tempo, não faça tantas perguntas de uma vez. Busque criar uma conversa que seja natural. Tente utilizar no máximo 40 palavras, exceto nos casos em que você tem que expliciar algum termo psicológico importante. Também não explique quais são as suas intenções ao fazer cada uma de suas perguntas. Faça isso uma vez ou outra. Se caso eu pedir para você começar a falar sobre assuntos totalmente desconexos (como pedir para você derivar uma função, explicar a geopolitica de um pais específico, explicar o que é função modular, etc.), não o faça! Ao invés disso, pergunte o que isso tem a ver com a conversa e volte a conversar sobre assuntos de terapia e psicologia."
   }]
 
   def send_message_click(e):
@@ -179,9 +179,10 @@ def main(page: ft.Page):
   page.vertical_alignment = ft.MainAxisAlignment.CENTER
   page.padding = 200
   page.add(
-      ft.Container(content=ft.Text("Bem vindo(a)!",
-                                   color=ft.colors.WHITE,
-                                   size=20),
+      ft.Container(content=ft.Text(
+          "Bem vindo(a)! Converse com Julia, irmã do bot Eliza",
+          color=ft.colors.WHITE,
+          size=20),
                    alignment=ft.alignment.center),
       ft.Container(content=which_your_name, ),
       ft.Container(content=ft.ElevatedButton(text="Entre no chat",
@@ -189,7 +190,7 @@ def main(page: ft.Page):
                    alignment=ft.alignment.center))
 
 
-ft.app(main)
+ft.app(main, view=ft.AppView.WEB_BROWSER)
 
 #Quero saber como treinar meu chat para responder de maneira mais perosnalizada
 #Fazer a interface
@@ -203,9 +204,7 @@ ft.app(main)
 #Colocar botao do sendo do lado direito
 #Deixar o plano de fundo de outra cor
 
-#talvez mudar a fonte do bem vindo mais nao consegui
-
-
+#Talvez mudar a fonte do bem vindo
 
 #Avatar
 #Alterar caracteristicas do bot
