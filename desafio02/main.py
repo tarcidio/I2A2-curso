@@ -189,7 +189,7 @@ def main(page: ft.Page):
                    alignment=ft.alignment.center))
 
 
-ft.app(main, view=ft.AppView.WEB_BROWSER)
+ft.app(main)
 
 #Quero saber como treinar meu chat para responder de maneira mais perosnalizada
 #Fazer a interface
