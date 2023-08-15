@@ -90,7 +90,7 @@ def main(page: ft.Page):
   BOT_ON = True
   #GUI variables
   user = User('', False)
-  user_bot = User('Gandalf', True)
+  user_bot = User('Eliza Bot', True)
   chat = ft.ListView(
       expand=True,
       spacing=10,
@@ -109,7 +109,7 @@ def main(page: ft.Page):
       "role":
       "system",
       "content":
-      "Tente responder minhas perguntas como se você fosse o personagem Gandalf da história Senhor dos Anéis"
+      "Tente responder minhas perguntas como se você fosse o meu terapeuta virtual"
   }]
 
   def send_message_click(e):
